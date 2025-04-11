@@ -1,9 +1,8 @@
 // db.js
 const mongoose = require('mongoose');
 
-// MongoDB connection URI (replace with your actual MongoDB URI)
-const dbURI = 'mongodb+srv://AzTee:pass@aztee.56dsi.mongodb.net/'; // Local MongoDB instance
-// Or if using MongoDB Atlas: 'mongodb+srv://<username>:<password>@cluster.mongodb.net/<dbname>'
+// Use environment variable
+const dbURI = process.env.MONGO_URI;
 
 const connectDB = async () => {
     try {
