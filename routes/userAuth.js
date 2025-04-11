@@ -56,6 +56,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/reg", async (req, res) => {
+  console.log("Register route hit with:", req.body);
   const { username, password } = req.body;
 
   // Validate the incoming request
