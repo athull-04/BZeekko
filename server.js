@@ -15,7 +15,7 @@ app.use(bodyParser.json()); // Parse incoming JSON requests
 // Use auth routes for authentication (login)
 app.use("/api/auth/admin", authRoutes); // This sets the base route for auth routes
 app.use("/api/auth/user", userAuth); 
-app.use("/api/auth", Regroutes);
+app.use("/api/auth/reg", Regroutes);
 app.use("/api/auth", profileRoutes);
 // Use product routes for product management
 app.use("/api/products", productRoutes);
