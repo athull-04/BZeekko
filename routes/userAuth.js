@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/register", async (req, res) => {
+router.post("/reg", async (req, res) => {
   const { username, password } = req.body;
 
   // Validate the incoming request
