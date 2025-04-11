@@ -56,33 +56,37 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/reg", async (req, res) => {
-  console.log("Register route hit with:", req.body);
+  console.log("📥 Register route hit");
+  console.log("➡️ Request body:", req.body);
+
   const { username, password } = req.body;
 
-  // Validate the incoming request
+  // Step 1: Validate request
   if (!username || !password) {
+    console.log("❌ Missing username or password");
     return res.status(400).json({ message: "Username and password are required" });
   }
 
-  // Check if the username already exists
-  const existingUser = await User.findOne({ username });
-  if (existingUser) {
-    return res.status(400).json({ message: "Username already exists" });
-  }
-
   try {
-    // Save the new user to the database without hashing the password
-    const newUser = await User.create({
-      username,
-      password, // Storing the password in plain text (not recommended)
-    });
+    // Step 2: Check if user exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      console.log("⚠️ Username already exists:", username);
+      return res.status(400).json({ message: "Username already exists" });
+    }
+
+    // Step 3: Create new user
+    const newUser = await User.create({ username, password });
+    console.log("✅ User created:", newUser);
 
     return res.status(201).json({ message: "User registered successfully!" });
+
   } catch (error) {
-    console.error("Error during registration:", error);
+    console.error("💥 Error during registration:", error);
     return res.status(500).json({ message: "An error occurred while registering the user" });
   }
 });
+
 
 
 // User-specific route
